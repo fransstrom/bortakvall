@@ -1,12 +1,15 @@
 package com.example.demo.entity;
 
 
+import org.hibernate.annotations.Check;
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.Date;
 
 @Entity
 public class Rented {
-
 
     private Long id;
 

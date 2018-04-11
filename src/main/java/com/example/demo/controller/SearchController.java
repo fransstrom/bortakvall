@@ -20,12 +20,12 @@ public class SearchController {
     @Autowired
     CustomerRepository customerRepository;
 
-
     @GetMapping("/search")
     public String movie(@RequestParam (value = "personnummer", required = false) String personnummer, Model model){
         model.addAttribute("movie", movieRepository.findMovieByCustomerPersonnummer(personnummer));
         return "searchmovie";
     }
+
 
 
 }
