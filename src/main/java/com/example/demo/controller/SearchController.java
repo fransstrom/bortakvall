@@ -23,7 +23,6 @@ public class SearchController {
     @Autowired
     CustomerRepository customerRepository;
 
-
     @GetMapping("/search")
     public String movie(@RequestParam (value = "socialsecuritynumber", required = false, defaultValue = "999999") String socialsecuritynumber,
                         Model model){
@@ -44,3 +43,4 @@ public class SearchController {
     }*/
 
 }
+

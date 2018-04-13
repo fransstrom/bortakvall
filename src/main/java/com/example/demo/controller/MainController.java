@@ -32,16 +32,16 @@ public class MainController {
         return "index";
     }
     @PostMapping("/pet")
-    public String addOwner(@RequestParam String personnummer, String namn, String adress,
-                           String zipcode, String city, String country, String phone, String email){
+    public String addOwner(@RequestParam String socialsecuritynumber, String name, String address,
+                           String postalcode, String city, String country, String phone, String email){
         Customer customer = new Customer();
-        customer.setPersonnummer(personnummer);
-        customer.setNamn(namn);
-        customer.setAdress(adress);
+        customer.setSocialsecuritynumber(socialsecuritynumber);
+        customer.setName(name);
+        customer.setAddress(address);
         customer.setCity(city);
         customer.setCountry(country);
         customer.setEmail(email);
-        customer.setZipcode(zipcode);
+        customer.setPostalcode(postalcode);
         customer.setPhone(phone);
         customerRepository.save(customer);
         return "redirect:/pet";
@@ -56,18 +56,18 @@ public class MainController {
     }
 
     @PostMapping("/updateinfo")
-    public String addpet(@RequestParam String namn, String adress, String zipcode, String city,
+    public String addpet(@RequestParam String name, String address, String postalcode, String city,
                          String country, String phone, String email,
                          String personnummer, Model model){
 
         Customer customer = customerRepository.getOne(personnummer);
-        customer.setZipcode(zipcode);
+        customer.setPostalcode(postalcode);
         customer.setEmail(email);
-        customer.setNamn(namn);
+        customer.setName(name);
         customer.setCity(city);
         customer.setCountry(country);
         customer.setPhone(phone);
-        customer.setAdress(adress);
+        customer.setAddress(address);
         customerRepository.save(customer);
         model.addAttribute("customer", customerRepository.findAll());
         return "redirect:/pet";

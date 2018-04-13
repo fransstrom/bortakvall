@@ -85,7 +85,7 @@
    -->
 
     <form th:object="${movie}" th:action="@{/search}" method="get">
-        <input type="text" name="personnummer" th:value="${personnummer}"/>
+        <input type="text" name="personnummer"  th:value="${personnummer}"/>
         <button type="submit">Search</button>
         <div>
             <h2>Movie List</h2>
@@ -94,8 +94,8 @@
                     <th>ProductId</th>
                     <th>Name</th>
                 </tr>
-                <th:block th:if="${personnummer} == null">
-                <tr th:each="movie: ${movie}">
+                <th:block th:if="${#strings.isEmpty(personnummer)}">
+                <tr  th:each="movie: ${movie}">
                     <td th:text="${movie.productId}">Product ID</td>
                     <td th:text="${movie.name}">Name</td>
                 </tr>
