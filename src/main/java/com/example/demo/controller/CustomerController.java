@@ -22,7 +22,7 @@ public class CustomerController {
 
 
     @GetMapping("/customer")
-    public String showCustomers(Model model){
+    public String showCustomers(Model model) {
         model.addAttribute("customer", customerRepository.findAll());
         return "customerindex";
     }
@@ -30,13 +30,25 @@ public class CustomerController {
     @PostMapping("/updateinfo")
     public String addpet(@RequestParam String name, String address, String postalcode, String city,
                          String country, String phone, String email,
-                         String socialsecuritynumber, Model model){
+                         String socialsecuritynumber, Model model) {
+        
+        Customer customer = customerRepository.getOne(socialsecuritynumber);
+        customer.setPostalcode(postalcode);
+        customer.setEmail(email);
+        customer.setName(name);
+        customer.setCity(city);
+        customer.setCountry(country);
+        customer.setPhone(phone);
+        customer.setAddress(address);
+        customerRepository.save(customer);
+        model.addAttribute("customer", customerRepository.findAll());
+
         return "redirect:/customer";
     }
 
     @PostMapping("/customer")
     public String addCustomer(@RequestParam String socialsecuritynumber, String name, String address,
-                              String postalcode, String city, String country, String phone, String email){
+                              String postalcode, String city, String country, String phone, String email) {
         Customer customer = new Customer();
         customer.setPhone(phone);
         customer.setCountry(country);
