@@ -31,7 +31,7 @@ public class CustomerController {
     public String addpet(@RequestParam String name, String address, String postalcode, String city,
                          String country, String phone, String email,
                          String socialsecuritynumber, Model model) {
-        
+
         Customer customer = customerRepository.getOne(socialsecuritynumber);
         customer.setPostalcode(postalcode);
         customer.setEmail(email);
