@@ -23,6 +23,7 @@ public class SearchController {
     @GetMapping("/search")
     public String movie(@RequestParam (value = "personnummer", required = false) String personnummer, Model model){
         model.addAttribute("movie", movieRepository.findMovieByCustomerPersonnummer(personnummer));
+        model.addAttribute("usermovies", customerRepository.findAll());
         return "searchmovie";
     }
 

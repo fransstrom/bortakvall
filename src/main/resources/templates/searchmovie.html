@@ -94,10 +94,13 @@
                     <th>ProductId</th>
                     <th>Name</th>
                 </tr>
-                <th:block th:if="${#strings.isEmpty(personnummer)}">
-                <tr  th:each="movie: ${movie}">
+                <th:block th:if="${personnummer==null}">
+
+                <tr  th:each="movies: ${movie}">
+                    <span th:if="${movie.customer.movies!=null}">
                     <td th:text="${movie.productId}">Product ID</td>
                     <td th:text="${movie.name}">Name</td>
+                </span>
                 </tr>
                 </th:block>
             </table>

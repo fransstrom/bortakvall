@@ -10,7 +10,7 @@ public class Customer {
  /*   Name • Address • Postal code (zip code) • City • Country • Phone • Email • Social Security Number (Personnummer)*/
 
 
-    private String personnummer;
+    private String personnummer=null;
 
     private String namn;
 
