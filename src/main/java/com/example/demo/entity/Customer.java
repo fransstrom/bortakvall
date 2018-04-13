@@ -1,42 +1,49 @@
 package com.example.demo.entity;
 
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
 public class Customer {
 
- /*   Name • Address • Postal code (zip code) • City • Country • Phone • Email • Social Security Number (Personnummer)*/
+    @Id
+    private String socialsecuritynumber;
 
+    @NotNull
+    private String name;
 
-    private String personnummer;
+    @NotNull
+    private String address;
 
-    private String namn;
+    @NotNull
+    private String postalcode;
 
-    private String adress;
-
-    private String zipcode;
-
+    @NotNull
     private String city;
 
+    @NotNull
     private String country;
 
+    @NotNull
     private String phone;
 
+    @NotNull
     private String email;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     private List<Movie> movies;
 
     public Customer(){
 
     }
 
-    public Customer(String namn, String personnummer, String adress, String zipcode, String city, String country, String phone, String email) {
-        this.namn = namn;
-        this.personnummer = personnummer;
-        this.adress = adress;
-        this.zipcode = zipcode;
+    public Customer(@Size(min = 10, max = 10) String socialsecuritynumber, @NotNull @Size(min = 2, max = 20) String name, @NotNull @Size(min = 3, max = 60) String address, @NotNull @Size(min = 5, max = 5) String postalcode, @NotNull @Size(min = 2, max = 40) String city, @NotNull @Size(min = 2, max = 30) String country, @NotNull @Size(min = 5, max = 20) String phone, @NotNull @Size(min = 5, max = 60) String email) {
+        this.socialsecuritynumber = socialsecuritynumber;
+        this.name = name;
+        this.address = address;
+        this.postalcode = postalcode;
         this.city = city;
         this.country = country;
         this.phone = phone;
@@ -44,30 +51,36 @@ public class Customer {
     }
 
 
-    @Id
-    @Column(name = "person_nummer")
-    public String getPersonnummer() {
-        return personnummer;
+    public String getSocialsecuritynumber() {
+        return socialsecuritynumber;
     }
 
-    public void setPersonnummer(String personnummer) {
-        this.personnummer = personnummer;
+    public void setSocialsecuritynumber(String socialsecuritynumber) {
+        this.socialsecuritynumber = socialsecuritynumber;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getName() {
+        return name;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public String getAddress() {
+        return address;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPostalcode() {
+        return postalcode;
+    }
+
+    public void setPostalcode(String postalcode) {
+        this.postalcode = postalcode;
     }
 
     public String getCity() {
@@ -102,8 +115,6 @@ public class Customer {
         this.email = email;
     }
 
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     public List<Movie> getMovies() {
         return movies;
     }
@@ -111,12 +122,5 @@ public class Customer {
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
-
-    public String getNamn() {
-        return namn;
-    }
-
-    public void setNamn(String namn) {
-        this.namn = namn;
-    }
 }
+

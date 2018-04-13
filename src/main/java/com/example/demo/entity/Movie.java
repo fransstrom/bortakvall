@@ -2,49 +2,59 @@ package com.example.demo.entity;
 
 
 import javax.persistence.*;
-import java.util.Date;
+import javax.validation.constraints.NotNull;
+import java.sql.Date;
+import java.time.LocalDate;
+
+
+
 
 @Entity
 public class Movie {
 
-    private String productId;
 
+    @Id
+    private String productid;
+
+    @NotNull
     private String name;
 
+    @NotNull
     private String description;
 
+    @NotNull
     private Date releasedate;
 
-    private String category;
-
+    @NotNull
     private String format;
 
+
+    private Boolean returned;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_socialsecuritynumber")
     private Customer customer;
 
-    private Rented rented;
+    public Movie(){
 
-   public Movie(){
+    }
 
-   }
 
-    public Movie(String productId, String name, String description, Date releasedate, String category, String format) {
-        this.productId = productId;
+    public Movie(String productid, @NotNull String name, @NotNull String description, @NotNull Date releasedate, @NotNull String format, Boolean returned) {
+        this.productid = productid;
         this.name = name;
         this.description = description;
         this.releasedate = releasedate;
-        this.category = category;
         this.format = format;
+        this.returned = returned;
     }
 
-
-    @Id
-    @Column(name = "product_id")
-    public String getProductId() {
-        return productId;
+    public String getProductid() {
+        return productid;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setProductid(String productid) {
+        this.productid = productid;
     }
 
     public String getName() {
@@ -71,14 +81,6 @@ public class Movie {
         this.releasedate = releasedate;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public String getFormat() {
         return format;
     }
@@ -87,9 +89,6 @@ public class Movie {
         this.format = format;
     }
 
-
-    @ManyToOne
-    @JoinColumn(name = "person_nummer")
     public Customer getCustomer() {
         return customer;
     }
@@ -98,14 +97,11 @@ public class Movie {
         this.customer = customer;
     }
 
-    @OneToOne(mappedBy = "movie")
-    public Rented getRented() {
-        return rented;
+    public Boolean getReturned() {
+        return returned;
     }
 
-    public void setRented(Rented rented) {
-        this.rented = rented;
+    public void setReturned(Boolean returned) {
+        this.returned = returned;
     }
-
-
 }
