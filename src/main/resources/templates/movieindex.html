@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Movie</title>
+    <title>Customer</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
     <div class="container">
-        <a class="navbar-brand" href="#">Movie</a>
+        <a class="navbar-brand" href="#">Movies</a>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active"  href="/pet">Customers</a>
+                <a class="nav-link"  href="/customer">Customers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/pets">Movies</a>
+                <a class="nav-link active" href="/movies">Movies</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Placeholder</a>
+                <a class="nav-link" href="/search">Search</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Placeholder</a>
+                <a class="nav-link" href="/rented">Rented</a>
             </li>
         </ul>
     </div>
@@ -34,13 +34,37 @@
             <div class="col-lg-6">
                 <div class="input-group">
 
-                    <input type="text" class="form-control" placeholder="Produkt Nummer" name="productId">
+                    <input type="text" class="form-control" placeholder="Product ID" name="productid">
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Namn" name="name">
+                    <input type="text" class="form-control" placeholder="Name" name="name">
 
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group">
+
+                    <input type="text" class="form-control" placeholder="Format" name="format">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Release date" name="releasedate">
+
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group">
+
+                    <input type="text" class="form-control" placeholder="Description" name="description">
                 </div>
             </div>
         </div>
@@ -48,7 +72,7 @@
         <div class="row">
             <div class="col-lg-offset-3 col-lg-6">
                 <div class="input-group">
-                    <button class="btn" type="submit">Add movie</button>
+                    <button class="btn" type="submit">Add customer</button>
                 </div>
             </div>
         </div>
@@ -58,48 +82,43 @@
         <table class="table mt-5 table-bordered table-hover">
             <thead class="thead-inverse">
             <tr>
-                <th>Produkt ID</th>
-                <th>Namn</th>
-                <th>Category</th>
-                <th>Renter</th>
-                <th>Renter Movie</th>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Format</th>
+                <th>Release date</th>
+                <th>Description</th>
+                <th>Rent Movie</th>
             </tr>
             </thead>
             <tbody>
-            <!-- Visas bara om det inte finns någon som hyr filmen -->
-            <th:block th:each="movie : ${movie}" th:object="${movie}"  th:if="${movie.customer} == null">
-                <tr>
-                    <td th:text="${movie.productId}">Produkt ID</td>
-                    <td th:text="${movie.name}">Name </td>
-                    <td th:text="${movie.category !=null}? ${movie.category} : 'No category'">Category</td>
-                    <td th:text="${movie?.customer?.namn}">Person nummer</td>
-
-                    <td><button class="btn btn-outline-primary" data-toggle="modal" th:data-target="'#rentmovie' + ${movie.productId}">Update Info</button>
+            <th:block th:each="movie : ${movie}"th:object="${movie}" th:if="${movie.customer} == null">
+                <tr  th:object="${movie}" >
+                    <td th:text="*{productid}">Product ID</td>
+                    <td th:text="*{name}">Name </td>
+                    <td th:text="*{format}">Format</td>
+                    <td th:text="*{releasedate}">Release date</td>
+                    <td><button class="btn btn-outline-primary">Description</button> </td>
+                    <td><button class="btn btn-outline-primary" data-toggle="modal" th:data-target="'#rentmovie' + ${movie.productid}">Rent movie</button>
 
                         <form action="#" th:action="@{/rentmovie}" method="post">
-                            <div class="modal"  th:draggable th:id="'rentmovie' + ${movie.productId}">
+                            <div class="modal"  th:draggable th:id="'rentmovie' + ${movie.productid}">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" th:text="${movie.productId}">Rent movie</h5>
-                                            <button class="btn btn-outline-primary" type="submit">Rent</button>
+                                            <h5 class="modal-title" th:text="${movie.productid}">Rent movie</h5>
                                             <button class="close" data-dismiss="modal">&times;</button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label>Person Nummer</label>
-                                                <input type="text" name="personnummer" placeholder="Person Nummer" class="form-control">
+                                                <label>Social security number</label>
+                                                <input type="text" name="socialsecuritynumber" placeholder="Social security number" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <input type="hidden" th:value="*{productId}" name="productId" class="form-control">
+                                                <input type="hidden" th:value="*{productid}" name="productid" class="form-control">
                                             </div>
-                                            <!--  <div>
-                                                  <h1 th:text="*{personnummer}"></h1>
-                                              </div>-->
                                         </div>
                                         <div class="modal-footer">
-                                            <!--<button class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                                            <!-- <button class="btn btn-primary" type="submit">Add</button>-->
+                                            <button class="btn btn-primary" type="submit">Rent movie</button>
                                         </div>
                                     </div>
                                 </div>
@@ -115,14 +134,12 @@
     <nav>
         <ul class="pagination pagination-lg justify-content-center">
             <li class="page-item disabled"><a class="page-link" href="#">Pages</a></li>
-            <li class="page-item"><a class="page-link" href="/pet">1</a></li>
-            <li class="page-item"><a class="page-link" href="/pet?page=1">2</a></li>
-            <li class="page-item"><a class="page-link" href="/pet?page=2">3</a></li>
+            <li class="page-item"><a class="page-link" href="/movie">1</a></li>
+            <li class="page-item"><a class="page-link" href="/movie?page=1">2</a></li>
+            <li class="page-item"><a class="page-link" href="/movie?page=2">3</a></li>
         </ul>
     </nav>
-
 </div>
-<!-- <td th:text="${movie?.customer?.namn}">Person nummer</td>-->
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
