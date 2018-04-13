@@ -1,4 +1,4 @@
-package com.example.bortakvall.Repositories;
+package com.example.bortakvall.Controllers;
 
 
 import org.springframework.stereotype.Controller;
