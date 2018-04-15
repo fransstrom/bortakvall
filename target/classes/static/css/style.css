@@ -58,3 +58,7 @@ tr:nth-child(odd) {
 .glyphicon-menu-hamburger {
     font-size: 20px;
 }
+
+.table th, .table td {
+    vertical-align: middle;
+}
