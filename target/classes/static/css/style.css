@@ -1,9 +1,60 @@
-body{
+
+body {
     background-image: url('../images/braveheart.jpg');
 }
 
-.introTBox{
+.introTBox {
     color: white;
     background-color: #0000007a;
-    padding: 40px;
+    padding: 3vh;
+    margin-bottom: 3vh;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+tr:nth-child(odd) {
+    background-color: white;
+}
+
+.formdiv {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    max-width: 700px;
+    background-color: white;
+
+}
+
+#menu-toggle{
+    margin-bottom: 3vh;
+    margin-left: 15px;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #0c5460;
+    color:white;
+}
+.formdiv input{
+    margin-bottom: 20px;
+
+}
+.glyphicon{
+    color:white;
+}
+
+.glyphicon-menu-hamburger {
+    font-size: 20px;
 }
