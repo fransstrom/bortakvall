@@ -5,13 +5,16 @@ import com.example.bortakvall.entity.Customer;
 import com.example.bortakvall.entity.Movie;
 import com.example.bortakvall.Repositories.CustomerRepository;
 import com.example.bortakvall.Repositories.MovieRepository;
+import com.example.bortakvall.forms.MovieForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.sql.Date;
 
 
@@ -27,7 +30,7 @@ public class MovieController {
 
 
     @GetMapping("/movies")
-    public String getMovies(Model model){
+    public String getMovies(Model model, MovieForm movieForm){
         model.addAttribute("movie", movieRepository.findAll());
         return "movieindex";
     }
@@ -50,15 +53,13 @@ public class MovieController {
 
 
     @PostMapping("/movies")
-    public String addMovie(@RequestParam String productid, String name, String format, String description, Date releasedate){
-        Movie movie = new Movie();
-        movie.setName(name);
-        movie.setDescription(description);
-        movie.setFormat(format);
-        movie.setReleasedate(releasedate);
-        movie.setProductid(productid);
-        movieRepository.save(movie);
-        return "redirect:/movies";
-
+    public String addMovie(@Valid MovieForm movieForm, BindingResult result, Model model){
+        if (result.hasErrors()){
+            return "redirect:/movies";
+        }else {
+            movieRepository.save(new Movie(movieForm.getProductid(),movieForm.getName(),movieForm.getDescription(),movieForm.getReleasedate(),movieForm.getFormat()));
+            model.addAttribute("movie", movieRepository.findAll());
+            return "/movies";
+        }
     }
 }

@@ -70,18 +70,20 @@
             <a class="btn btn-warning" id="menu-toggle"> <i id="iconMenu" class="fas fa-angle-double-right"></i> </a>
         </div>
         <div class="container-fluid">
-            <form method="post" class="col-md-6 col-sm-6 col-lg-6">
+            <form method="post" class="col-md-6 col-sm-6 col-lg-6" th:object="${movieForm}">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="input-group">
 
                             <input type="text" class="form-control" placeholder="Product ID" name="productid">
+                            <span class="help-block error" th:if="${#fields.hasErrors('productid')}" th:errors="*{productid}">Fel fel</span>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Name" name="name">
-
+                            <span class="alert-danger alert" th:if="${#fields.hasErrors('name')}"
+                                  th:errors="*{name}"></span>
                         </div>
                     </div>
                 </div>
@@ -91,11 +93,15 @@
                         <div class="input-group">
 
                             <input type="text" class="form-control" placeholder="Format" name="format">
+                            <span class="alert-danger alert" th:if="${#fields.hasErrors('format')}"
+                                  th:errors="*{format}"></span>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Release date" name="releasedate">
+                            <span class="alert-danger alert" th:if="${#fields.hasErrors('releasedate')}"
+                                  th:errors="*{releasedate}"></span>
 
                         </div>
                     </div>
@@ -106,6 +112,8 @@
                         <div class="input-group">
 
                             <input type="text" class="form-control" placeholder="Description" name="description">
+                            <span class="alert-danger alert" th:if="${#fields.hasErrors('description')}"
+                                  th:errors="*{description}"></span>
                         </div>
                     </div>
                 </div>

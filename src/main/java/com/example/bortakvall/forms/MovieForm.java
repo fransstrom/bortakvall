@@ -1,50 +1,32 @@
-package com.example.bortakvall.entity;
+package com.example.bortakvall.forms;
 
+import com.example.bortakvall.entity.Customer;
 
-import javax.persistence.*;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 
-
-@Entity
-public class Movie {
-
+public class MovieForm {
 
     @Id
     private String productid;
 
     @NotNull
+    @Size(min = 5, max = 200)
     private String name;
 
     @NotNull
+    @Size(min = 5, max = 200)
     private String description;
 
     @NotNull
     private Date releasedate;
 
     @NotNull
+    @Size(min = 2, max = 200)
     private String format;
 
-
-    private Boolean returned;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_socialsecuritynumber")
-    private Customer customer;
-
-    public Movie(){
-
-    }
-
-
-    public Movie(String productid, @NotNull String name, @NotNull String description, @NotNull Date releasedate, @NotNull String format) {
-        this.productid = productid;
-        this.name = name;
-        this.description = description;
-        this.releasedate = releasedate;
-        this.format = format;
-        this.returned = returned;
-    }
 
     public String getProductid() {
         return productid;
@@ -86,19 +68,8 @@ public class Movie {
         this.format = format;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 
-    public Boolean getReturned() {
-        return returned;
-    }
 
-    public void setReturned(Boolean returned) {
-        this.returned = returned;
-    }
+
 }
