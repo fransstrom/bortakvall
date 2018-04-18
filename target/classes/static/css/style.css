@@ -66,3 +66,21 @@ tr:nth-child(odd) {
 .alert{
     top: 8px;
 }
+
+.table .nopadding{
+    padding-top:0;
+    padding-bottom:0;
+    padding-left: 0;
+}
+
+
+.nopadding div:first-child{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+.nopadding p{
+    margin-bottom: 2px;
+}
+
