@@ -31,6 +31,7 @@ public class MovieController {
 
     @GetMapping("/movies")
     public String getMovies(Model model, MovieForm movieForm){
+
         model.addAttribute("movie", movieRepository.findAll());
         return "movieindex";
     }
@@ -54,12 +55,15 @@ public class MovieController {
 
     @PostMapping("/movies")
     public String addMovie(@Valid MovieForm movieForm, BindingResult result, Model model){
+
         if (result.hasErrors()){
-            return "redirect:/movies";
+            model.addAttribute("felmed","Det gick inte");
+            model.addAttribute("movie", movieRepository.findAll());
+            System.out.println("gick in i error");
+            return "movieindex";
         }else {
             movieRepository.save(new Movie(movieForm.getProductid(),movieForm.getName(),movieForm.getDescription(),movieForm.getReleasedate(),movieForm.getFormat()));
-            model.addAttribute("movie", movieRepository.findAll());
-            return "/movies";
+            return "redirect:/movies";
         }
     }
 }
