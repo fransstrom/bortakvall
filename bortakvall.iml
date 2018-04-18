@@ -25,7 +25,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
     <orderEntry type="library" name="com.microsoft.sqlserver:mssql-jdbc:6.2.2.jre8" level="project" />
+=======
+    <orderEntry type="library" name="mssql-jdbc-6.2.2.jre8" level="project" />
+>>>>>>> 856029683efb7a0963aaa22ec996c2329b9d74cd
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-logging:2.0.1.RELEASE" level="project" />

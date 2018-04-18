@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Search</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
+    <div class="container">
+        <a class="navbar-brand" href="#">Search</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link"  href="/customer">Customers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/movies">Movies</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/search">Search</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rented">Rented</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+
+
+
+    <div th:obect="${movie}">
+        <th:block th:if="${socialsecuritynumber == null}">
+            <!--th:object="${movie}"-->
+            <form th:action="@{/search}" method="get">
+            <input type="text" name="socialsecuritynumber" placeholder="Social security number"  th:value="${socialsecuritynumber}"/>
+             <button class="btn btn-outline-primary" type="submit">Search</button>
+                <!--<form action="#" th:action="@{/updatemovie}" method="post">
+                    <input type="text" th:value="${socialsecuritynumber}" placeholder="Social security number" name="socialsecuritynumber">
+                    <button class="btn btn-outline-danger" type="submit">Return movies</button>
+                </form>-->
+                <table class="table mt-5 table-bordered table-hover">
+                <thead class="thead-inverse">
+                <tr>
+                    <th>ProductId</th>
+                    <th>Name</th>
+                    <th>Renter social security number</th>
+                    <th>Renter name</th>
+                </tr>
+                </thead>
+
+                    <tr th:each="movie: ${movie}">
+                        <td th:text="${movie.productid}">Product ID</td>
+                        <td th:text="${movie.name}">Name</td>
+                        <td th:text="${movie?.customer?.socialsecuritynumber}">Social security number</td>
+                        <td th:text="${movie?.customer?.name}">Renter name</td>
+            </table>
+    </form>
+        </th:block>
+
+    </div>
+
+
+    <nav>
+        <ul class="pagination pagination-lg justify-content-center">
+            <li class="page-item disabled"><a class="page-link" href="#">Pages</a></li>
+            <li class="page-item"><a class="page-link" href="/search">1</a></li>
+            <li class="page-item"><a class="page-link" href="/search?page=1">2</a></li>
+            <li class="page-item"><a class="page-link" href="/search?page=2">3</a></li>
+        </ul>
+    </nav>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
