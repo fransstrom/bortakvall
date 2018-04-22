@@ -199,7 +199,7 @@
                                 <div th:id="'collapseOne'+${customer.socialsecuritynumber}" class="collapse in">
                                     <ol>
                                         <div th:each="movies : ${customer.movies}">
-                                           <li> <p  th:utext="'Movie name: ' +${movies.name} + ${#strings.replace(#strings.escapeXml(text),'&#10;','&lt;br&gt;')} + '  Product ID: ' + ${movies.productid}"></p></li>
+                                           <li> <p  th:text="'Movie name: ' +${movies.name} + ' Product ID: ' + ${movies.productid}"></p></li>
                                         </div>
                                     </ol>
                                 </div>

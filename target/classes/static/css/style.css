@@ -43,10 +43,23 @@ tr:nth-child(odd) {
     margin-left: 15px;
 }
 
-.table-hover tbody tr:hover {
+/*
+.table-hover tbody tr:hover td{
     background-color: #0c5460;
     color:white;
 }
+*/
+
+
+.table-hover tbody tr:hover{
+    background-color: rgb(1, 67, 93);
+    color:white;
+}
+tbody form{
+    color:black;
+}
+
+
 .formdiv input{
     margin-bottom: 20px;
 
@@ -76,7 +89,7 @@ tr:nth-child(odd) {
 
 .nopadding div:first-child{
     padding-top: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 0px;
 }
 
 

@@ -185,17 +185,17 @@
                     </thead>
                     <tbody>
                     <th:block th:each="customer : ${customer}">
-                        <tr th:object="${customer}">
-                            <td th:text="*{socialsecuritynumber}">Social Security Number</td>
-                            <td th:text="*{name}">Name</td>
-                            <td th:text="*{address}">Address</td>
-                            <td th:text="*{postalcode}">Postal code</td>
-                            <td th:text="*{city}">City</td>
-                            <td th:text="*{country}">Country</td>
-                            <td th:text="*{phone}">Phone</td>
-                            <td th:text="*{email}">Email</td>
+                        <tr class="customhover" th:object="${customer}">
+                            <td class="custable" th:text="*{socialsecuritynumber}">Social Security Number</td>
+                            <td class="custable" th:text="*{name}">Name</td>
+                            <td class="custable"  th:text="*{address}">Address</td>
+                            <td  class="custable" th:text="*{postalcode}">Postal code</td>
+                            <td class="custable"  th:text="*{city}">City</td>
+                            <td class="custable"  th:text="*{country}">Country</td>
+                            <td class="custable"  th:text="*{phone}">Phone</td>
+                            <td class="custable"  th:text="*{email}">Email</td>
                             <td>
-                                <button class="btn btn-outline-primary" data-toggle="modal"
+                                <button  class="btn btn-outline-primary " data-toggle="modal"
                                         th:data-target="'#updateinfo' + *{socialsecuritynumber}">Update Info
                                 </button>
 
