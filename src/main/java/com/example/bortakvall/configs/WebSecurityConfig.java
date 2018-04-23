@@ -35,10 +35,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/").permitAll()
-                    .antMatchers("/admin/**").hasRole("ADMIN")
+                    //.antMatchers("/").permitAll()
+                    //.antMatchers("/admin/**").hasRole("ADMIN")
                     .antMatchers( "/css/**").permitAll()
-                    .anyRequest().authenticated();
+                    .antMatchers("/**").authenticated()
+                    .and()
+                    .csrf().disable();
         }
 
         @Bean
@@ -53,12 +55,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             .password("password")
                             .roles("USER")
                             .build());
-            manager.createUser(
-                    builder
-                            .username("admin")
-                            .password("password")
-                            .roles("USER", "ADMIN")
-                            .build());
+//            manager.createUser(
+//                    builder
+//                            .username("admin")
+//                            .password("password")
+//                            .roles("USER", "ADMIN")
+//                            .build());
             return manager;
 
     }

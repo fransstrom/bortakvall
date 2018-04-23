@@ -1,11 +1,15 @@
 package com.example.bortakvall.forms;
 
 import com.example.bortakvall.entity.Customer;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.sql.Date;
+
+import static javax.print.attribute.Size2DSyntax.MM;
 
 public class MovieForm {
 
@@ -21,6 +25,8 @@ public class MovieForm {
     @NotNull
     @Size(min = 5, max = 200)
     private String description;
+
+
 
     @NotNull
     private Date releasedate;

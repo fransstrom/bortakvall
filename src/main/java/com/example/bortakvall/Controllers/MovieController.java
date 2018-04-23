@@ -36,11 +36,13 @@ public class MovieController {
         return "movieindex";
     }
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home(){
 
-        return "index";
+        return "login";
     }
+
+
 
 
     @PostMapping("/rentmovie")

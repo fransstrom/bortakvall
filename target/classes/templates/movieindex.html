@@ -110,7 +110,7 @@
                     <div class="col-lg-6">
                         <div class="input-group">
                             <input th:value="*{releasedate}" type="date" class="form-control" placeholder="Release date"
-                                   name="releasedate">
+                                   name="releasedate" required>
                         </div>
                         <span th:value="*{releasedate}" class="alert-danger alert"
                               th:if="${#fields.hasErrors('releasedate')}"
