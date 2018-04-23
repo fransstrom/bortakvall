@@ -1,57 +1,42 @@
-package com.example.bortakvall.entity;
+package com.example.bortakvall.forms;
 
-import javax.persistence.*;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
 
-@Entity
-public class Customer {
+public class CustomerForm {
 
- /*   Name • Address • Postal code (zip code) • City • Country • Phone • Email • Social Security Number (Personnummer)*/
-
-    @Id
+    @NotNull
+    @Size(min = 5, max = 200)
     private String socialsecuritynumber;
 
     @NotNull
+    @Size(min = 5, max = 200)
     private String name;
 
     @NotNull
+    @Size(min = 5, max = 200)
     private String address;
 
     @NotNull
+    @Size(min = 5, max = 200)
     private String postalcode;
 
     @NotNull
+    @Size(min = 5, max = 200)
     private String city;
 
     @NotNull
+    @Size(min = 5, max = 200)
     private String country;
 
     @NotNull
+    @Size(min = 5, max = 200)
     private String phone;
 
     @NotNull
+    @Size(min = 5, max = 200)
     private String email;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-    private List<Movie> movies;
-
-    public Customer(){
-
-    }
-
-    public Customer(@Size(min = 10, max = 10) String socialsecuritynumber, @NotNull @Size(min = 2, max = 20) String name, @NotNull @Size(min = 3, max = 60) String address, @NotNull @Size(min = 5, max = 5) String postalcode, @NotNull @Size(min = 2, max = 40) String city, @NotNull @Size(min = 2, max = 30) String country, @NotNull @Size(min = 5, max = 20) String phone, @NotNull @Size(min = 5, max = 60) String email) {
-        this.socialsecuritynumber = socialsecuritynumber;
-        this.name = name;
-        this.address = address;
-        this.postalcode = postalcode;
-        this.city = city;
-        this.country = country;
-        this.phone = phone;
-        this.email = email;
-    }
-
 
     public String getSocialsecuritynumber() {
         return socialsecuritynumber;
@@ -117,12 +102,5 @@ public class Customer {
         this.email = email;
     }
 
-    public List<Movie> getMovies() {
-        return movies;
-    }
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
-    }
 }
-

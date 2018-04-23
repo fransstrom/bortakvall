@@ -57,12 +57,15 @@ public class MovieController {
     public String addMovie(@Valid MovieForm movieForm, BindingResult result, Model model){
 
         if (result.hasErrors()){
-            model.addAttribute("felmed","Det gick inte");
             model.addAttribute("movie", movieRepository.findAll());
             System.out.println("gick in i error");
             return "movieindex";
         }else {
-            movieRepository.save(new Movie(movieForm.getProductid(),movieForm.getName(),movieForm.getDescription(),movieForm.getReleasedate(),movieForm.getFormat()));
+            movieRepository.save(new Movie(movieForm.getProductid(),
+                    movieForm.getName()
+                    ,movieForm.getDescription()
+                    ,movieForm.getReleasedate()
+                    ,movieForm.getFormat()));
             return "redirect:/movies";
         }
     }

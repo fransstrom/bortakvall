@@ -13,14 +13,29 @@
     <link href="../static/css/simple-sidebar.css" th:href="@{/css/simple-sidebar.css}" rel="stylesheet"/>
     <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
     <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+            integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
 
+    <script src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="../static/js/bootstrap.bundle.js" th:src="@{/js/bootstrap.bundle.js}"></script>
+    <script src="../static/js/bootstrap.bundle.js" th:src="@{/js/jquery.js}"></script>
 
 </head>
 
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper" class="toggled">
         <script src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
         <script src="../static/js/bootstrap.bundle.js" th:src="@{/js/bootstrap.bundle.js}"></script>
         <script src="../static/js/bootstrap.bundle.js" th:src="@{/js/jquery.js}"></script>
@@ -28,7 +43,7 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
+                    <a href="/">
                         <span style="color: #59bbef">Borta</span>Kväll
                     </a>
                 </li>
@@ -36,20 +51,20 @@
                     <a href="/movies">Tillgängliga filmer</a>
                 </li>
                 <li>
-                    <a href="#">Utlånade filmer</a>
+                    <a href="/rented">Utlånade filmer</a>
                 </li>
+                <!--            <li>
+                                <a href="#">Registrera lån</a>
+                            </li>-->
+                <!--            <li>
+                                <a href="#">Lämna tillbaka</a>
+                            </li>-->
                 <li>
-                    <a href="#">Registrera lån</a>
+                    <a href="/customer">Registrera kund</a>
                 </li>
-                <li>
-                    <a href="#">Lämna tillbaka</a>
-                </li>
-                <li>
-                    <a href="#">Registrera kund</a>
-                </li>
-                <li>
-                    <a href="#">Registrera film</a>
-                </li>
+                <!--            <li>
+                                <a href="#">Registrera film</a>
+                            </li>-->
                 <li>
                     <a href="#">Kontakt</a>
                 </li>
@@ -59,11 +74,13 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <div class="container-fluid col-md-6 col-sm-6 col-lg-6 introTBox" style="float: left">
+            <div class="container-fluid">
+                <a class="btn btn-warning" id="menu-toggle"> <i id="iconMenu" class="fas fa-angle-double-right"></i> </a>
+            </div>
+            <div class="container-fluid col-md-12 col-sm-12 col-lg-12 introTBox" style="float: left">
                 <h1><span style="color: red">Borta</span>Kväll</h1>
                 <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
                 <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                <a class="btn btn-secondary" id="menu-toggle">Alternativ</a>
             </div>
 
 
