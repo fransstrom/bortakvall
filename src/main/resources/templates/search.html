@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Customer</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
+    <div class="container">
+        <a class="navbar-brand" href="#">Movies</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link"  href="/customer">Customers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/availiblemovies">Movies</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/registermovie">Register Movie</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rented">Rented</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <div class="d-flex flex-row justify-content-around row-h1">
+        <!--  <div class="p-4 item-hl">
+              <form method="get" th:action="@{/searchbycategory}">
+                  <select name="category">
+                      <option value="action">Action</option>
+                      <option value="comedy">Comedy</option>
+                      <option value="drama">Drama</option>
+                      <option value="adventure">Adventure</option>
+                      <option value="fantasy">Fantasy</option>
+                      <option value="horror">Horror</option>
+                      <option value="romance">Romance</option>
+                      <option value="sciencefiction">Sci-fi</option>
+                  </select>
+                  <input type="submit" value="Category">
+              </form>
+          </div>-->
+        <div class="p-4 item-hl">
+            <form method="get" th:action="@{/findbyname}">
+                <input type="text" placeholder="name" name="name">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div>
+        <table class="table mt-5 table-bordered table-hover">
+            <thead class="thead-inverse">
+            <tr>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Format</th>
+                <th>Genre</th>
+                <th>Release date</th>
+                <th>Description</th>
+                <th>Rent Movie</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="movie : ${movie}"th:object="${movie}">
+                <tr  th:object="${movie}" th:style="${movie.customer == null} ? 'color: green' : ' color: red'">
+                    <td th:text="*{productid}">Product ID</td>
+                    <td th:text="*{name}">Name </td>
+                    <td th:text="*{format}">Format</td>
+
+                    <td th:text="*{releasedate}">Release date</td>
+                    <td th:text="*{description}">Description</td>
+
+
+
+                    <td><button th:if="${movie.customer == null}"  class="btn btn-outline-primary" data-toggle="modal" th:data-target="'#rentmovie' + ${movie.productid}">Rent movie</button>
+
+                        <form action="#" th:action="@{/rentmovie}" method="post">
+                            <div class="modal" th:id="'rentmovie' + ${movie.productid}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" th:text="${movie.name}"></h5>
+                                            <button class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Social security number</label>
+                                                <input type="text" name="socialsecuritynumber" placeholder="Social security number" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="hidden" th:value="*{productid}" name="productid" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" type="submit">Rent movie</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+
+    <!--  <ul class="nav nav-pills">
+          <li class="nav-item" th:each="i : ${#numbers.sequence(0,movie.totalPages-1)}">
+              <a th:text="${i}" class="nav-link"></a>
+          </li>
+      </ul>-->
+
+    <!--<div th:with="currentUrl=(${#httpServletRequest.requestURI + '?' + #strings.defaultString(#httpServletRequest.queryString, '')})">
+       <a th:href="@{${currentUrl}(myparam=test)}">click here</a>
+    </div>-->
+
+
+    <!--<div th:with="currentUrl=(${@currentUrlWithoutParam.apply('myparam')})">
+    <a th:href="@{${currentUrl}(myparam=test)}">click here</a>
+</div>-->
+
+    <!--<span th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}"
+      th:text="${urlBuilder.replaceQueryParam('p2', '32').toUriString()}">
+</span>-->
+    <!-- <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+         <nav>
+             <ul class="pagination pagination-lg justify-content-center">
+                 <li class="page-item"  th:each="i : ${#numbers.sequence(0,movie.totalPages-1)}"> <a class="page-link" th:text="${i+1}"
+                                                                                                     th:href="@{${urlBuilder.replaceQueryParam('/page', '2').toUriString()}}"
+                                                                                                     th:classappend="${currentPage}==${i}?'active':''"  ></a></li>
+             </ul>
+         </nav>
+     </div>-->
+
+    <!--<div th:with="currentUrl=(${#httpServletRequest.requestURI + '?' + #strings.defaultString(#httpServletRequest.queryString, '')})">
+        <a th:href="@{${currentUrl}(myparam=test)}">click here</a>
+    </div>
+-->
+    <!-- <div th:with="currentUrl=(${@currentUrlWithoutParam.apply('myparam')})">
+     <nav>
+             <ul class="pagination pagination-lg justify-content-center">
+                 <li class="page-item"  th:each="i : ${#numbers.sequence(0,movie.totalPages-1)}">
+                     <a class="page-link" th:text="${i+1}" th:href="@{${currentUrL}(myparam=hej)}"
+                        th:classappend="${currentPage}==${i}?'active':''"  ></a></li>
+             </ul>
+         </nav>
+     </div>-->
+
+    <!--  <div th:with="currentUrl=(${#httpServletRequest.requestURI + '?' + #strings.defaultString(#httpServletRequest.queryString, '')})">
+         <nav>
+              <ul class="pagination pagination-lg justify-content-center">
+                  <li class="page-item"  th:each="i : ${#numbers.sequence(0,movie.totalPages-1)}"> <a class="page-link" th:text="${i+1}"
+                                                                                                      th:href="@{${currentUrl}(page=${i})}"
+                                                                                                      th:classappend="${currentPage}==${i}?'active':''"  ></a></li>
+              </ul>
+          </nav>
+      </div>-->
+    <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+        <nav>
+            <ul class="pagination pagination-lg justify-content-center">
+                <li class="page-item"  th:each="i : ${#numbers.sequence(0,movie.totalPages-1)}">
+                    <a class="page-link" th:text="${i+1}" th:href="@{${urlBuilder.replaceQueryParam('page', {i}).toUriString()}}"
+                       th:classappend="${currentPage}==${i}?'active':''"  ></a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- <div th:with="currentUrl=(${#httpServletRequest.requestURI + '?' + #strings.defaultString(#httpServletRequest.queryString, '')})">
+         <a th:href="@{${currentUrl}(page=${i})}">click here</a>
+     </div>-->
+</div>
+<!--th:href="@{/findbydate/(page=${i})}"-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
